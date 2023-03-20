@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'blog_api'
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'rest_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,12 +78,13 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 
 DATABASES = {
     'default': {
+        'HOST': '127.0.0.1',
+        'NAME': 'rest_api_blog',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'postgres_db',
-        'PORT': '5432',
+        'PASSWORD': 'admin',
+        # 'HOST': 'postgres_db',
+        # 'PORT': '5432',
     }
 }
 

@@ -3,6 +3,8 @@ from blog.models import Post
 from .serializers import PostSerializer
 from rest_framework.permissions import IsAdminUser, DjangoModelPermissions, BasePermission, SAFE_METHODS, \
     IsAuthenticatedOrReadOnly
+from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
 
 
 class PostUserWritePermission(BasePermission):
@@ -16,16 +18,30 @@ class PostUserWritePermission(BasePermission):
         return obj.author == request.user
 
 
-class PostList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.all()
+class PostList(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
 
+    def get_object(self, queryset=None, **kwargs):
+        item = self.kwargs.get('pk')
+        return get_object_or_404(Post, slug=item)
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
-    permission_classes = [DjangoModelPermissions]
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    # Define Custom Queryset
+    def get_queryset(self):
+        return Post.objects.all()
+
+
+
+# class PostList(generics.ListCreateAPIView):
+#     permission_classes = [IsAuthenticatedOrReadOnly]
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+#
+#
+# class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):
+#     permission_classes = [DjangoModelPermissions]
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
 
 
 """ Concrete View Classes

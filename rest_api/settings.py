@@ -186,18 +186,15 @@ AUTHENTICATION_BACKENDS = (
     # Facebook OAuth2
     'social_core.backends.facebook.FacebookAppOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
-
     # drf_social_oauth2
     'drf_social_oauth2.backends.DjangoOAuth2',
-
     # Django
     'django.contrib.auth.backends.ModelBackend',
-
 )
 
 # Facebook configuration
-SOCIAL_AUTH_FACEBOOK_KEY = ('424762231818988')
-SOCIAL_AUTH_FACEBOOK_SECRET = ('7ea506193526e3f8ecc7743579545e15')
+SOCIAL_AUTH_FACEBOOK_KEY = ('243271684911143')
+SOCIAL_AUTH_FACEBOOK_SECRET = ('188fced80f839419dc1c3242e440d65c')
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:3000/'
 
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from Facebook.

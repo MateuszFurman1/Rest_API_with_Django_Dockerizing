@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
+from django.conf import settings
+from django.conf.urls.static import static
 # from rest_framework_simplejwt.views import (
 #     TokenObtainPairView,
 #     TokenRefreshView,
 # )
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 urlpatterns = [
     # Oauth
@@ -39,8 +40,8 @@ urlpatterns = [
     path('api/', include('blog_api.urls', namespace='blog_api')),
 
     # API schema and Documentation
-    path('project/docs/', include_docs_urls(title='BlogAPI')),
-    path('project/schema', get_schema_view(
+    path('docs/', include_docs_urls(title="BlogAPI")),
+    path('schema/', get_schema_view(
         title="BlogAPI",
         description="API for the BlogAPI",
         version="1.0.0"

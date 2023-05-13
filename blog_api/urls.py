@@ -6,7 +6,7 @@ app_name = 'blog_api'
 
 urlpatterns = [
     path('', PostList.as_view(), name='listpost'),
-    path('post/<str:pk>/', PostDetail.as_view(), name='detailpost'),
+    path('<int:pk>/', PostDetail.as_view(), name='detailpost'),
     path('search/', PostListDetailfilter.as_view(), name='searchpost'),
     # Post Admin URLs
     path('admin/create/', CreatePost.as_view(), name='createpost'),

@@ -28,7 +28,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # Oauth
-    path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
+    # path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
     #API Token Management
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('api/user/', include('users.urls', namespace='users')),
     # Blog_API Application
     path('api/', include('blog_api.urls', namespace='blog_api')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 
     # API schema and Documentation
     path('docs/', include_docs_urls(title="BlogAPI")),

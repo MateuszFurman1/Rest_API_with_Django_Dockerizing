@@ -26,21 +26,26 @@ class PostUserWritePermission(BasePermission):
 # Display Posts
 
 class PostList(generics.ListAPIView):
+    permission_classes = [DjangoModelPermissions]
+    serializer_class = PostSerializer
+    queryset = Post.published_objects.all()
+
+
+class PostDetail(generics.RetrieveAPIView, PostUserWritePermission):
+    permission_classes = [PostUserWritePermission]
 
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
-
-
-class PostDetail(generics.RetrieveAPIView):
-
-    serializer_class = PostSerializer
+    # queryset = Post.published_objects.all()
 
     def get_object(self, queryset=None, **kwargs):
-        item = self.kwargs.get('pk')
-        return get_object_or_404(Post, slug=item)
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Post, pk=pk)
+
+    # def get_object(self, queryset=None, **kwargs):
+    #     item = self.kwargs.get('pk')
+    #     return get_object_or_404(Post, slug=item)
 
 # Post Search
-
 
 class PostListDetailfilter(generics.ListAPIView):
 

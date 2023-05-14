@@ -19,7 +19,7 @@ from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
 from django.conf import settings
 from django.conf.urls.static import static
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+# from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -29,9 +29,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     # Oauth
     # path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
-    #API Token Management
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     #Project URLs
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
@@ -39,7 +37,10 @@ urlpatterns = [
     path('api/user/', include('users.urls', namespace='users')),
     # Blog_API Application
     path('api/', include('blog_api.urls', namespace='blog_api')),
-    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # API Token Management- Simple JWT
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # API schema and Documentation
     path('docs/', include_docs_urls(title="BlogAPI")),

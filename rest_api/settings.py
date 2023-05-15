@@ -41,16 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'blog',
     'blog_api',
-    'rest_framework',
     'users',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     # 'oauth2_provider',
     # 'social_django',
     # 'drf_social_oauth2',
-    'drf_spectacular',
+    # 'drf_spectacular',
 
 ]
 

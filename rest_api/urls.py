@@ -49,8 +49,8 @@ urlpatterns = [
         description="API for the BlogAPI",
         version="1.0.0"
     ), name='openapi-schema'),
-#     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-#     path('api/schema/docs', SpectacularSwaggerView.as_view(url_name='schema')),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/docs', SpectacularSwaggerView.as_view(url_name='schema')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

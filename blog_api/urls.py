@@ -1,4 +1,5 @@
-from .views import PostList, PostDetail, PostListDetailfilter, CreatePost, EditPost, AdminPostDetail, DeletePost
+from .views import PostList, PostListDetailfilter, CreatePost, EditPost, AdminPostDetail, DeletePost, \
+    PostDetailId, PostDetailSlug
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 
@@ -6,7 +7,8 @@ app_name = 'blog_api'
 
 urlpatterns = [
     path('', PostList.as_view(), name='listpost'),
-    path('<int:pk>/', PostDetail.as_view(), name='detailpost'),
+    path('<int:pk>/', PostDetailId.as_view(), name='detailpost'),
+    path('<str:pk>/', PostDetailSlug.as_view(), name='detailpost'),
     path('search/', PostListDetailfilter.as_view(), name='searchpost'),
     # Post Admin URLs
     path('admin/create/', CreatePost.as_view(), name='createpost'),

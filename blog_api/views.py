@@ -26,12 +26,16 @@ class PostUserWritePermission(BasePermission):
 # Display Posts
 
 class PostList(generics.ListAPIView):
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.published_objects.all()
 
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return Post.objects.filter(author=user)
 
-class PostDetail(generics.RetrieveAPIView, PostUserWritePermission):
+
+class PostDetailId(generics.RetrieveAPIView, PostUserWritePermission):
     permission_classes = [PostUserWritePermission]
 
     serializer_class = PostSerializer
@@ -41,19 +45,26 @@ class PostDetail(generics.RetrieveAPIView, PostUserWritePermission):
         pk = self.kwargs.get('pk')
         return get_object_or_404(Post, pk=pk)
 
-    # def get_object(self, queryset=None, **kwargs):
-    #     item = self.kwargs.get('pk')
-    #     return get_object_or_404(Post, slug=item)
+
+class PostDetailSlug(generics.RetrieveAPIView, PostUserWritePermission):
+    permission_classes = [PostUserWritePermission]
+
+    serializer_class = PostSerializer
+    # queryset = Post.published_objects.all()
+
+    def get_object(self, queryset=None, **kwargs):
+        slug = self.kwargs.get('pk')
+        return get_object_or_404(Post, slug=slug)
+
 
 # Post Search
+
 
 class PostListDetailfilter(generics.ListAPIView):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     filter_backends = [filters.SearchFilter]
-    # '^' Starts-with search.
-    # '=' Exact matches.
     search_fields = ['^slug']
 
 # Post Admin

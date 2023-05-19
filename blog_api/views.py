@@ -11,7 +11,6 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 
-
 class PostUserWritePermission(BasePermission):
     message = 'Editing posts is restricted to the author only.'
 

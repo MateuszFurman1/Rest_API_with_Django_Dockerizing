@@ -2,7 +2,7 @@
 
 ## Docker image
 
-https://hub.docker.com/layers/matmat2000/blog/v1.0/images/sha256:c4be6ccb879037ca67cd0683dab1b381d5ad8ed7329a48cef4aad34df594e167
+https://hub.docker.com/r/matmat2000/drf-blog
 
 ## Requirements
 
